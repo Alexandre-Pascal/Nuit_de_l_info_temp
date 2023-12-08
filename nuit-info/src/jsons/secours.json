@@ -1,0 +1,131 @@
+{
+    "questions": [
+      {
+        "id": 1,
+        "type": "choix_multiple",
+        "score": 5,
+        "difficulte": "moyen",
+        "image": "chemin/vers/image1.jpg",
+        "libelle": "Quel gaz est le principal responsable du réchauffement climatique ?",
+        "reponses": [
+          {
+            "id": 201,
+            "titre": "Dioxyde de carbone (CO2)",
+            "categories": ["climat", "gaz à effet de serre"],
+            "description": "Le dioxyde de carbone est un gaz à effet de serre, mais n'est pas le principal responsable.",
+            "estBonneQuestion": false,
+            "niveauPertinence": 2
+          },
+          {
+            "id": 202,
+            "titre": "Méthane (CH4)",
+            "categories": ["climat", "gaz à effet de serre"],
+            "description": "Le méthane est un puissant gaz à effet de serre, contribuant au réchauffement climatique.",
+            "estBonneQuestion": true,
+            "niveauPertinence": 4
+          },
+          {
+            "id": 203,
+            "titre": "Oxygène (O2)",
+            "categories": ["climat"],
+            "description": "L'oxygène n'est pas un gaz à effet de serre et ne contribue pas au réchauffement climatique.",
+            "estBonneQuestion": false,
+            "niveauPertinence": 1
+          },
+          {
+            "id": 204,
+            "titre": "Azote (N2)",
+            "categories": ["climat"],
+            "description": "L'azote n'est pas un gaz à effet de serre et ne contribue pas au réchauffement climatique.",
+            "estBonneQuestion": false,
+            "niveauPertinence": 1
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "type": "choix_unique",
+        "score": 3,
+        "difficulte": "facile",
+        "image": "chemin/vers/image2.jpg",
+        "libelle": "Quelle est la première règle des 3R pour la réduction des déchets ?",
+        "reponses": [
+          {
+            "id": 205,
+            "titre": "Réparer",
+            "categories": ["environnement", "déchets"],
+            "description": "Réparer est une des règles des 3R, mais ce n'est pas la première.",
+            "estBonneQuestion": false,
+            "niveauPertinence": 2
+          },
+          {
+            "id": 206,
+            "titre": "Réutiliser",
+            "categories": ["environnement", "déchets"],
+            "description": "Réutiliser est une des règles des 3R, mais ce n'est pas la première.",
+            "estBonneQuestion": false,
+            "niveauPertinence": 2
+          },
+          {
+            "id": 207,
+            "titre": "Réduire",
+            "categories": ["environnement", "déchets"],
+            "description": "Réduire est la première règle des 3R pour la réduction des déchets.",
+            "estBonneQuestion": true,
+            "niveauPertinence": 4
+          },
+          {
+            "id": 208,
+            "titre": "Recycler",
+            "categories": ["environnement", "déchets"],
+            "description": "Recycler est une des règles des 3R, mais ce n'est pas la première.",
+            "estBonneQuestion": false,
+            "niveauPertinence": 2
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "type": "choix_multiple",
+        "score": 4,
+        "difficulte": "difficile",
+        "image": "chemin/vers/image3.jpg",
+        "libelle": "Quel est l'impact de la déforestation sur le climat ?",
+        "reponses": [
+          {
+            "id": 209,
+            "titre": "Augmentation des températures",
+            "categories": ["climat", "déforestation"],
+            "description": "La déforestation contribue à l'augmentation des températures.",
+            "estBonneQuestion": true,
+            "niveauPertinence": 4
+          },
+          {
+            "id": 210,
+            "titre": "Diminution des températures",
+            "categories": ["climat", "déforestation"],
+            "description": "La déforestation ne conduit généralement pas à une diminution des températures.",
+            "estBonneQuestion": false,
+            "niveauPertinence": 3
+          },
+          {
+            "id": 211,
+            "titre": "Stagnation des températures",
+            "categories": ["climat", "déforestation"],
+            "description": "La déforestation a tendance à contribuer à l'augmentation des températures plutôt qu'à la stagnation.",
+            "estBonneQuestion": false,
+            "niveauPertinence": 3
+          },
+          {
+            "id": 212,
+            "titre": "Aucun impact sur les températures",
+            "categories": ["climat", "déforestation"],
+            "description": "La déforestation a un impact sur les températures.",
+            "estBonneQuestion": false,
+            "niveauPertinence": 3
+          }
+        ]
+      }
+    ]
+  }
+  

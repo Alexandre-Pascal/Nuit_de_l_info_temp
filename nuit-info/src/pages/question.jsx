@@ -1,6 +1,7 @@
 import './question.scss'
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Separator from "../components/Separator";
+import data from "../jsons/secours.json";
 
 const testIcon = (iconColor = "#fff") => {
     return (
@@ -39,157 +40,104 @@ const testIcon = (iconColor = "#fff") => {
 };
 
 const plantIcon = testIcon();
-
 function Question() {
+    const [currentQuestionId, setCurrentQuestionId] = useState(1);
+
+    const handleNextQuestion = () => {
+        const nextId = currentQuestionId + 1;
+        setCurrentQuestionId(nextId);
+    };
+
+    const question = getQuestion(currentQuestionId);
+    const currentRefArray = useRef([]);
+
     return (
         <div className="find-answer__question">
-                <QuestionCard question={getQuestion(1)} />
-            <div className="find-answer__answer">
-                <Answer answer={shuffle(getFourAnswers(2))} />
-            </div>
-            <Separator icone={plantIcon} />
+            {question && (
+                <>
+                    <QuestionCard question={question} />
+                    <div className="find-answer__answer">
+                        {question.reponses.map((response, index) => (
+                            <AnswerCard
+                                key={response.id}
+                                answer={response}
+                                onSelect={
+                                    (answer) => {
+                                        if (checkAnswer(answer)) {
+                                            currentRefArray.current[index].style.border = "10px solid green";
+                                        } else {
+                                            currentRefArray.current[index].style.border = "10px solid red";
+                                        }
+                                    }
+                                
+                                }
+                                ref={currentRef => (currentRefArray.current.push(currentRef))}
+
+                                onClick={() => {
+                                    console.log(currentRefArray[index]);
+                                }}
+                            
+                                />
+                        ))}
+                    </div>
+                    <Separator icone={plantIcon} />
+                    <button onClick={handleNextQuestion}>Next Question</button>
+                </>
+            )}
         </div>
     );
 }
 
 export default Question;
 
-const questions = {
-    1: {
-        title: "Question 1",
-        image:"require(../assets/Images-UI/amazonie.jpg)",
-        reponse: 2
-    },
-    2: {
-        title: "Question 2",
-        content: "Le Lorem Ipsum est simplement du faux texte employé dans été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment.",
-        reponse: 1
-
-    },
-    3: {
-        title: "Question 3",
-        image: "../assets/Images-UI/amazonie.jpg",
-        reponse: 3
-    },
-
-}
-
-const answers = {
-    1: {
-        id: 1,
-        title: "Rep 1",
-        content: "Le Lorem Ipsum est simplement du faux texte employé dans été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker."
-
-    },
-    2: {
-        id: 2,
-        title: "Rep 2",
-        content: "Le Lorem Ipsum est simplement du faux texte employé dans été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.",
-
-    },
-    3: {
-        id: 3,
-        title: "Rep 3",
-        content: "Le Lorem é dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker."
-
-    },
-    4: {
-        id: 4,
-        title: "Rep 4",
-        content: "Le Lorem larisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker."
-
-    },
-    5: {
-        id: 5,
-        title: "Rep 5",
-        content: "Le Lorem Ipsum est simplement de de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker."
-
-    },
-    6: {
-        id: 6,
-        title: "Rep 6",
-        content: "Le Lorem Ipsum est simplement du fau les anilles Letes passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker."
-
-    }
-}
-
-function getAnswer(id) {
-    return answers[id];
-}
-
 function getQuestion(id) {
-    return questions[id];
-}
-
-function getQuestionImage(id) {
-    return questions[id].image;
-
-}
-
-function getFourAnswers(id) {
-    let uniqueAnswers = [getAnswer(id)]; // Commencez avec la réponse correcte
-
-    // Ajoutez trois réponses incorrectes uniques
-    while (uniqueAnswers.length < 4) {
-        const randomId = Math.floor(Math.random() * 6) + 1;
-        const randomAnswer = getAnswer(randomId);
-        if (!uniqueAnswers.includes(randomAnswer)) {
-            uniqueAnswers.push(randomAnswer);
-        }
+    if (data && data.questions) {
+        const question = data.questions.find((q) => q.id === id);
+        return question || null;
+    } else {
+        console.error("Data is missing the 'questions' property or it is not an object.");
+        return null;
     }
-
-    return shuffle(uniqueAnswers);
 }
-
-
-function shuffle(array) {
-    return array.sort(() => Math.random() - 0.5);
-}
-
-function Answer({ answer }) {
-    const handleAnswerClick = (event) => {
-        verifyAnswer(answer, event.currentTarget);
-    };
+function QuestionCard({ question }) {
+    if (!question) {
+        return (
+            <div className="find-answer__question-card">
+                <p className="find-answer__error-message">Question not found</p>
+            </div>
+        );
+    }
 
     return (
-        answer.map((answer, index) => (
-            <div key={index} className="find-answer__answer-card" onClick={handleAnswerClick}>
-                <h1>{answer.title}</h1>
-            </div>
-        ))
+        <div className="find-answer__question-card">
+            <h2 className="find-answer__question-title">{question.libelle}</h2>
+            <p className="find-answer__question-description">
+            </p>
+        </div>
     );
 }
 
-function QuestionCard({ question }) {
 
-    if (question.image) {
-        return (
-<div className="find-answer__question-card">
-                <h1>{question.title}</h1>
-                <img src={question.image} alt="question" />
-            </div>
+const AnswerCard = React.forwardRef(({ answer, onSelect }, ref) => {
+    const [selected, setSelected] = useState(false);
 
-        );
-    } else {
-        return (
-            <div className="find-answer__question-card">
-                <h1>{question.title}</h1>
-                <p>{question.content}</p>
-            </div>
-        );
+    const handleClick = () => {
+        setSelected(true);
+        onSelect(answer);
+    };
 
-    }
+    return (
+        <div
+            className={`find-answer__answer-card ${selected ? (answer.estBonneQuestion ? 'correct' : 'incorrect') : ''}`}
+            onClick={handleClick}
+            ref={ref}
+        >
+            <h2 className="find-answer__answer-title">{answer.titre}</h2>
+            <p className="find-answer__answer-description">{answer.description}</p>
+        </div>
+    );
+});
+
+function checkAnswer(answer) {
+    return answer.estBonneQuestion;
 }
-
-
-function verifyAnswer(clickedAnswer, clickedElement, question) {
-    const selectedAnswerTitle = clickedAnswer.title; // Obtenez le titre de la réponse cliquée
-    const correctAnswerTitle = answers[question.reponse].title; // Obtenez le titre de la réponse correcte
-
-    if (selectedAnswerTitle === correctAnswerTitle) {
-        clickedElement.style.border = '1px solid #0d4202'; // Bordure verte pour une réponse correcte
-    } else {
-        clickedElement.style.border = '1px solid #7c0000'; // Bordure rouge pour une réponse incorrecte
-    }
-}
-
