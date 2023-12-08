@@ -2,14 +2,18 @@
 
 import React from 'react';
 
-const PopUp = ({ reponse, onClose }) => {
+const PopUp = ({ reponse, onPasserQuestionSuivante, onClose }) => {
     return (
         <div className="popup">
             {reponse}
 
             <br />
 
-            <button onClick={onClose}>Fermer</button>
+            {onPasserQuestionSuivante ? (
+                <button onClick={onPasserQuestionSuivante}>Passer à la question suivante</button>
+            ) : (
+                <button onClick={onClose}>Fermer</button>
+            )}
         </div>
     );
 }

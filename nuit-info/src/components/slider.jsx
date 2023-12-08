@@ -8,11 +8,18 @@ const Question = () => {
     const [reponse, setReponse] = useState('');
     const [donnees, setDonnees] = useState(null);
     const [showPopUp, setShowPopUp] = useState(false);
+    const [indexQuestion, setIndexQuestion] = useState(0);
 
     useEffect(() => {
-        // Utilisez l'importation directe du fichier JSON
-        setDonnees(test);
-    }, []);
+        if (indexQuestion < test.questions.length) {
+            // Utilisez l'importation directe du fichier JSON
+            setDonnees(test.questions[indexQuestion]);
+        } else {
+            // Afficher un message de félicitations lorsque toutes les questions ont été répondues
+            setDonnees(null);
+            setShowPopUp(true);
+        }
+    }, [indexQuestion]);
 
     const handleSliderChange = (e) => {
         setValeurSlider(e.target.value);
@@ -20,7 +27,7 @@ const Question = () => {
 
     const handleValidation = () => {
         if (valeurSlider >= donnees.valeurMinAcceptee && valeurSlider <= donnees.valeurMaxAcceptee) {
-            // Afficher le PopUp avec la réponse correcte
+            // Afficher le PopUp avec la réponse correcte et le bouton pour passer à la question suivante
             setReponse('');
             setShowPopUp(true);
         } else {
@@ -28,8 +35,17 @@ const Question = () => {
         }
     };
 
-    const handleClosePopUp = () => {
+    const handlePasserQuestionSuivante = () => {
+        // Passer à la question suivante en mettant à jour l'index
+        setIndexQuestion(indexQuestion + 1);
+
+        // Fermer la pop-up
         setShowPopUp(false);
+    };
+
+    const handleClosePopUp = () => {
+        // Afficher le bouton "Passer à la question suivante" dans la pop-up
+        setShowPopUp(true);
     };
 
     return (
@@ -49,11 +65,15 @@ const Question = () => {
                     <button onClick={handleValidation}>Valider</button>
                     <p>{reponse}</p>
                     {showPopUp && (
-                        <PopUp reponse={donnees.description} onClose={handleClosePopUp} />
+                        <PopUp
+                            reponse={donnees.description}
+                            onPasserQuestionSuivante={handlePasserQuestionSuivante}
+                            onClose={handleClosePopUp}
+                        />
                     )}
                 </div>
             ) : (
-                <p>Chargement des données...</p>
+                <p>{indexQuestion === test.questions.length ? "Félicitations, vous avez terminé le questionnaire !" : "Chargement des données..."}</p>
             )}
         </div>
     );

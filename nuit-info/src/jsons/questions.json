@@ -1,9 +1,49 @@
 {
-    "question": "Si vous remplacez une journée de trajet en voiture par une journée de vélo, quelle serait la réduction estimée des émissions de CO2 en un an ? (en kg)",
-    "valeurMinAcceptee": 4160,
-    "valeurMaxAcceptee": 5200,
-    "description": "En moyenne, une voiture émet 1,5 kg de CO2 par jour. En vélo, vous n'émettez pas de CO2.",
-    "min": 0,
-    "max": 15000,
-    "step": "10"
+    "questions": [
+        {
+            "question": "Si vous remplacez une ampoule incandescente de 60 watts par une ampoule LED de 10 watts, quelle serait l'estimation de la réduction de la consommation d'énergie en un an ? (en kWh)",
+            "valeurMinAcceptee": 150,
+            "valeurMaxAcceptee": 250,
+            "description": "Une ampoule LED de 10 watts consomme environ six fois moins d'énergie qu'une ampoule incandescente de 60 watts sur la même durée.",
+            "min": 0,
+            "max": 500,
+            "step": "10"
+        },
+        {
+            "question": "Si vous remplacez une douche de 15 minutes par une douche de 5 minutes, quelle serait l'estimation de la réduction de la consommation d'eau en un an ? (en litres)",
+            "valeurMinAcceptee": 20000,
+            "valeurMaxAcceptee": 30000,
+            "description": "Une douche de 5 minutes consomme beaucoup moins d'eau qu'une douche de 15 minutes, qui est plus gourmande en termes de consommation d'eau.",
+            "min": 0,
+            "max": 50000,
+            "step": "100"
+        },
+        {
+            "question": "Si vous remplacez un trajet en avion de 500 km par un trajet en train, quelle serait l'estimation de la réduction des émissions de CO2 en un an ? (en kg)",
+            "valeurMinAcceptee": 6000,
+            "valeurMaxAcceptee": 8000,
+            "description": "Les voyages en train émettent moins de CO2 par kilomètre parcouru par rapport aux voyages en avion.",
+            "min": 0,
+            "max": 12000,
+            "step": "10"
+        },
+        {
+            "question": "Si vous remplacez une heure de télévision par une heure de lecture, quelle serait l'estimation de la réduction de la consommation d'électricité en un an ? (en kWh)",
+            "valeurMinAcceptee": 50,
+            "valeurMaxAcceptee": 100,
+            "description": "Regarder la télévision consomme plus d'électricité que la lecture, qui nécessite généralement moins de ressources énergétiques.",
+            "min": 0,
+            "max": 200,
+            "step": "5"
+        },
+        {
+            "question": "Si vous remplacez un repas de viande par un repas végétarien, quelle serait l'estimation de la réduction des émissions de CO2 en un an ? (en kg)",
+            "valeurMinAcceptee": 300,
+            "valeurMaxAcceptee": 500,
+            "description": "La production de viande génère plus d'émissions de CO2 par rapport à la production de produits végétariens.",
+            "min": 0,
+            "max": 1000,
+            "step": "10"
+        }
+    ]
 }
