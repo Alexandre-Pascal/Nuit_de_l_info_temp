@@ -1,0 +1,24 @@
+{
+    "questions": [
+        {
+            "question": "Si vous remplacez une ampoule incandescente de 60 watts par une ampoule LED de 10 watts, quelle serait l'estimation de la réduction de la consommation d'énergie en un an ? (en kWh)",
+            "valeurMinAcceptee": 150,
+            "valeurMaxAcceptee": 250,
+            "description": "Une ampoule LED de 10 watts consomme environ six fois moins d'énergie qu'une ampoule incandescente de 60 watts sur la même durée.",
+            "min": 0,
+            "max": 500,
+            "step": "10",
+            "type": "slider"
+        },
+        {
+            "question": "Si vous remplacez une douche de 15 minutes par une douche de 5 minutes, quelle serait l'estimation de la réduction de la consommation d'eau en un an ? (en litres)",
+            "valeurMinAcceptee": 20000,
+            "valeurMaxAcceptee": 30000,
+            "description": "Une douche de 5 minutes consomme beaucoup moins d'eau qu'une douche de 15 minutes, qui est plus gourmande en termes de consommation d'eau.",
+            "min": 0,
+            "max": 50000,
+            "step": "100",
+            "type": "slider"
+        }
+    ]
+}
