@@ -1,0 +1,6 @@
+{
+    "question": "Si vous remplacez une journée de trajet en voiture par une journée de vélo, quelle serait la réduction estimée des émissions de CO2 en un an ? (en kg)",
+    "min": 4160,
+    "max": 5200,
+    "description": "En moyenne, une voiture émet 1,5 kg de CO2 par jour. En vélo, vous n'émettez pas de CO2."
+}

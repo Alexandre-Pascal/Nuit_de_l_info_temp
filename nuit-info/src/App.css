@@ -32,7 +32,29 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Question.css */
+
+.question-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+input {
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px;
+  cursor: pointer;
+}
+
+p {
+  margin-top: 10px;
 }
