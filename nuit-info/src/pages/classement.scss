@@ -1,0 +1,51 @@
+#classement{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    #conteneur{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        #containeurClassementPerso{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: mediumorchid;
+            border-radius: 10px;
+            height: 100%;
+            padding: 1rem;
+            box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+        }
+        #containeurClassementGeneral{
+            padding: 1%;
+            box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+            border-radius: 3%;
+            .utilisateur{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                padding: 10px;
+    
+    
+                .points{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: mediumorchid;
+                    height: 40px;
+                    width: 40px;
+                    border-radius: 50%;
+                    transform: translateX(15px);
+                }
+            }
+        }
+    }
+
+
+}
