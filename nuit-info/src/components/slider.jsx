@@ -3,6 +3,8 @@ import { useNavigate, } from 'react-router-dom';
 import test from '../jsons/questions.json';
 import PopUp from './popup';
 
+import './slider.scss';
+
 const Question = () => {
     const [valeurSlider, setValeurSlider] = useState();
     const [reponse, setReponse] = useState('');
