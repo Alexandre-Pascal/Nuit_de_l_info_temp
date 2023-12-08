@@ -9,6 +9,7 @@ const Question = () => {
     const [donnees, setDonnees] = useState(null);
     const [showPopUp, setShowPopUp] = useState(false);
     const [indexQuestion, setIndexQuestion] = useState(0);
+    const [score, setScore] = useState(0);
 
     useEffect(() => {
         if (indexQuestion < test.questions.length) {
@@ -27,10 +28,13 @@ const Question = () => {
 
     const handleValidation = () => {
         if (valeurSlider >= donnees.valeurMinAcceptee && valeurSlider <= donnees.valeurMaxAcceptee) {
-            // Afficher le PopUp avec la réponse correcte et le bouton pour passer à la question suivante
+            // La réponse est correcte, incrémenter le score
+            setScore(score + (donnees.type === "slider" ? 10 : 0));
             setReponse('');
             setShowPopUp(true);
         } else {
+            // La réponse est incorrecte, décrémenter le score (jusqu'à un minimum de 0)
+            setScore(Math.max(score - 1, 0));
             setReponse('Faux. La réponse doit être entre ' + donnees.valeurMinAcceptee + ' et ' + donnees.valeurMaxAcceptee + '.');
         }
     };
@@ -53,17 +57,22 @@ const Question = () => {
             {donnees ? (
                 <div>
                     <p>{donnees.question}</p>
-                    <input
-                        type="range"
-                        min={donnees.min}
-                        max={donnees.max}
-                        step={donnees.step}
-                        value={valeurSlider}
-                        onChange={handleSliderChange}
-                    />
-                    <p>Valeur du curseur : {valeurSlider}</p>
+                    {donnees.type === "slider" && (
+                        <>
+                            <input
+                                type="range"
+                                min={donnees.min}
+                                max={donnees.max}
+                                step={donnees.step}
+                                value={valeurSlider}
+                                onChange={handleSliderChange}
+                            />
+                            <p>Valeur du curseur : {valeurSlider}</p>
+                        </>
+                    )}
                     <button onClick={handleValidation}>Valider</button>
                     <p>{reponse}</p>
+                    <p>Score actuel : {score}</p>
                     {showPopUp && (
                         <PopUp
                             reponse={donnees.description}
@@ -73,7 +82,7 @@ const Question = () => {
                     )}
                 </div>
             ) : (
-                <p>{indexQuestion === test.questions.length ? "Félicitations, vous avez terminé le questionnaire !" : "Chargement des données..."}</p>
+                <p>{indexQuestion === test.questions.length ? `Félicitations, vous avez terminé le questionnaire ! Votre score final est de ${score}.` : "Chargement des données..."}</p>
             )}
         </div>
     );
